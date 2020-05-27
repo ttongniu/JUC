@@ -1,4 +1,4 @@
-package com.rite;
+package  com.rite;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,15 +14,6 @@ public class syn01 {
   private int count = 10;
   private Object o=new Object();
 
-  public void m(){
-    //任何线程要执行下面代码 必须先拿到o对象的锁
-    synchronized (o){
-      count--;
-      System.out.println(Thread.currentThread().getName() +"Count =" +count);
-    }
-
-  }
-
   public static void main(String[] args) {
 
     int i = 2;
@@ -35,6 +26,15 @@ public class syn01 {
       throw new IndexOutOfBoundsException(e.getMessage());
     }
 
+
+  }
+
+  public void m(){
+    //任何线程要执行下面代码 必须先拿到o对象的锁
+    synchronized (o){
+      count--;
+      System.out.println(Thread.currentThread().getName() +"Count =" +count);
+    }
 
   }
   }

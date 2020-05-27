@@ -13,20 +13,6 @@ package com.rite;
 public class chongru2 {
   private  int count = 10;
 
-  protected synchronized   void m1() {
-    System.out.println(Thread.currentThread().getName()+"m1 start...");
-    count--;
-    try {
-      Thread.sleep(1000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-    System.out.println(Thread.currentThread().getName() + "Count =" + count);
-    System.out.println(Thread.currentThread().getName()+"m1 end...");
-  }
-
-
-
   /**
    * 结果：
    TT stat
@@ -39,6 +25,18 @@ public class chongru2 {
   public static void main(String[] args) {
     TT tt=new TT();
     new Thread(tt::m2).start();
+  }
+
+  protected synchronized   void m1() {
+    System.out.println(Thread.currentThread().getName()+"m1 start...");
+    count--;
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    System.out.println(Thread.currentThread().getName() + "Count =" + count);
+    System.out.println(Thread.currentThread().getName()+"m1 end...");
   }
 
 }

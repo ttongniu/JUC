@@ -14,23 +14,6 @@ public class Account {
   private String name;
   private double  balance;
 
-  private  synchronized   void setBalance(String name, double balance){
-
-    this.name = name;
-    try {
-      Thread.sleep(2000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-    this.balance = balance;
-
-  }
-
-
-  public /**synchronized**/  double getBalance(String name) {
-    return  this.balance;
-  }
-
   /**
    * out:
    * 0.0
@@ -55,6 +38,22 @@ public class Account {
       e.printStackTrace();
     }
     System.out.println(account.getBalance("ntt"));
+  }
+
+  private  synchronized   void setBalance(String name, double balance){
+
+    this.name = name;
+    try {
+      Thread.sleep(2000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    this.balance = balance;
+
+  }
+
+  public /**synchronized**/  double getBalance(String name) {
+    return  this.balance;
   }
 
 }

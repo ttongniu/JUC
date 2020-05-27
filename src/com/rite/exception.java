@@ -13,26 +13,6 @@ import java.util.concurrent.TimeUnit;
 public class exception {
   private  int count = 0;
 
-  protected synchronized   void m1() {
-    System.out.println(Thread.currentThread().getName()+"m1 start...");
-    while (true){
-      count++;
-      try {
-        TimeUnit.SECONDS.sleep(1);
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
-      if(count==5){
-        int i= 1/0;  //此处抛异常 锁会被释放  要想不被释放可以进行catch然后让循环继续
-      }
-      System.out.println(Thread.currentThread().getName() + "Count =" + count);
-      System.out.println(Thread.currentThread().getName()+"m1 end...");
-    }
-
-  }
-
-
-
   /**
    * 结果：
    TT stat
@@ -52,6 +32,24 @@ public class exception {
       e.printStackTrace();
     }
     new Thread(t::m1,"ntt2").start();
+  }
+
+  protected synchronized   void m1() {
+    System.out.println(Thread.currentThread().getName()+"m1 start...");
+    while (true){
+      count++;
+      try {
+        TimeUnit.SECONDS.sleep(1);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      if(count==5){
+        int i= 1/0;  //此处抛异常 锁会被释放  要想不被释放可以进行catch然后让循环继续
+      }
+      System.out.println(Thread.currentThread().getName() + "Count =" + count);
+      System.out.println(Thread.currentThread().getName()+"m1 end...");
+    }
+
   }
 
 }

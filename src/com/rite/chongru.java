@@ -12,6 +12,20 @@ package com.rite;
 public class chongru {
   private  int count = 10;
 
+  /**
+   * 结果：
+   Thread-0m1 start...
+   Thread-0Count =9
+   Thread-0m1 end...
+   Thread-0m2 start...
+   Thread-0m2 end...
+   * @param args
+   */
+  public static void main(String[] args) {
+    chongru t=new chongru();
+    new Thread(t::m1).start();
+  }
+
   private synchronized   void m1() {
     System.out.println(Thread.currentThread().getName()+"m1 start...");
     count--;
@@ -33,21 +47,6 @@ public class chongru {
       e.printStackTrace();
     }
     System.out.println(Thread.currentThread().getName()+"m2 end...");
-  }
-
-
-  /**
-   * 结果：
-   Thread-0m1 start...
-   Thread-0Count =9
-   Thread-0m1 end...
-   Thread-0m2 start...
-   Thread-0m2 end...
-   * @param args
-   */
-  public static void main(String[] args) {
-    chongru t=new chongru();
-    new Thread(t::m1).start();
   }
 
 }

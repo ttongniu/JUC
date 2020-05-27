@@ -22,17 +22,6 @@ public class volatileWard {
 
   private  volatile boolean flag=true;
 
-  protected synchronized   void m1() {
-    System.out.println(Thread.currentThread().getName()+"m1 start...");
-    while (flag){
-
-
-    }
-    System.out.println(Thread.currentThread().getName()+"m1 end...");
-  }
-
-
-
   /**
    * 无volatile
    * 结果：
@@ -54,6 +43,15 @@ public class volatileWard {
       e.printStackTrace();
     }
     t.flag=false;
+  }
+
+  protected synchronized   void m1() {
+    System.out.println(Thread.currentThread().getName()+"m1 start...");
+    while (flag){
+
+
+    }
+    System.out.println(Thread.currentThread().getName()+"m1 end...");
   }
 
 }

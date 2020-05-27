@@ -20,16 +20,6 @@ public class atomic {
 
   ///* volatile */  int count=0;
   AtomicInteger count=new AtomicInteger(0);
-  protected /*synchronized */   void m1() {
-    System.out.println(Thread.currentThread().getName()+"m1 start...");
-    for (int i = 0;i<10000;i++){
-      count.incrementAndGet();
-    }
-
-    System.out.println(Thread.currentThread().getName()+"m1 end...");
-  }
-
-
 
   /**
    * 未加上 synchronize  out： 96510
@@ -56,6 +46,15 @@ public class atomic {
     });
 
     System.out.println(t.count);
+  }
+
+  protected /*synchronized */   void m1() {
+    System.out.println(Thread.currentThread().getName()+"m1 start...");
+    for (int i = 0;i<10000;i++){
+      count.incrementAndGet();
+    }
+
+    System.out.println(Thread.currentThread().getName()+"m1 end...");
   }
 
 }

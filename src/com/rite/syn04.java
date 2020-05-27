@@ -10,6 +10,13 @@ package com.rite;
 public class syn04 implements Runnable {
   private  int count = 10;
 
+  public static void main(String[] args) {
+    syn04 syn=new syn04();
+    for(int i=0;i<5;i++){
+      new Thread(syn,"Thread"+i).start();
+    }
+  }
+
   private synchronized   void m() {  // synchronized (T.class)
     count--;
     System.out.println(Thread.currentThread().getName() + "Count =" + count);
@@ -18,13 +25,6 @@ public class syn04 implements Runnable {
   @Override
   public void run() {
     m();
-  }
-
-  public static void main(String[] args) {
-    syn04 syn=new syn04();
-    for(int i=0;i<5;i++){
-      new Thread(syn,"Thread"+i).start();
-    }
   }
 
 }

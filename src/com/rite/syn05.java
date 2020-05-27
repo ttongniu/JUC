@@ -10,6 +10,21 @@ package com.rite;
 public class syn05 {
   private  int count = 10;
 
+  /**
+   * 结果：
+   * m1m1 start...
+   * m2m2 start...
+   * m2m2 end...
+   * m1Count =9
+   * m1m1 end...
+   * @param args
+   */
+  public static void main(String[] args) {
+    syn05 t=new syn05();
+    new Thread(t::m1,"m1").start();
+    new Thread(t::m2,"m2").start();
+  }
+
   private synchronized   void m1() {
     System.out.println(Thread.currentThread().getName()+"m1 start...");
     count--;
@@ -30,22 +45,6 @@ public class syn05 {
       e.printStackTrace();
     }
     System.out.println(Thread.currentThread().getName()+"m2 end...");
-  }
-
-
-  /**
-   * 结果：
-   * m1m1 start...
-   * m2m2 start...
-   * m2m2 end...
-   * m1Count =9
-   * m1m1 end...
-   * @param args
-   */
-  public static void main(String[] args) {
-    syn05 t=new syn05();
-    new Thread(t::m1,"m1").start();
-    new Thread(t::m2,"m2").start();
   }
 
 }
